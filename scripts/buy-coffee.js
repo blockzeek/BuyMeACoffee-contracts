@@ -74,6 +74,18 @@ async function main() {
   console.log("== memos ==");
   const memos = await buyMeACoffee.getMemos();
   printMemos(memos);
+
+  console.log("== change owner ==");
+  // get owner
+  const currentOwner = await buyMeACoffee.connect(owner).getOwner();
+  console.log(currentOwner);
+  
+  // change owner
+  await buyMeACoffee.connect(owner).changeOwner(tipper.address);
+
+  // get new owner
+  const newOwner = await buyMeACoffee.connect(owner).getOwner();
+  console.log(newOwner);
 }
 
 // We recommend this pattern to be able to use async/await everywhere

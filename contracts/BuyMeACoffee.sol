@@ -75,4 +75,19 @@ contract BuyMeACoffee {
     function withdrawTips() public {
         require(owner.send(address(this).balance));
     }
+
+    /**
+     * @dev change owner 
+     */
+    function changeOwner(address newOwner) public {
+        require(newOwner == address(newOwner), "Invalid address");
+        owner = payable(newOwner);
+    }
+
+    /**
+     * @dev fetches contract owner
+     */
+    function getOwner() public view returns (address) {
+        return owner;
+    }
 }
